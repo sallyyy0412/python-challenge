@@ -5,7 +5,7 @@ csvpath = "C:/python-challenge/bybank/resources/02-Homework_03-Python_Instructio
     
 with open(csvpath, newline='') as csvfile:
 	# 讀取 CSV 檔案內容
-	rows = list(csv.reader(csvfile))
+	rows = csv.reader(csvfile)
 	# 總盈虧
 	total = 0
 	# 總月數 
@@ -55,7 +55,7 @@ with open(csvpath, newline='') as csvfile:
 		# 列為上個月盈虧
 		lastAccount = currentAccount
 	
-	
+
 	print('Financial Analysis')
 	print('----------------------------')
 	print('Total Months:', monthCount)
@@ -63,5 +63,25 @@ with open(csvpath, newline='') as csvfile:
 	print('Average  Change:', '$' + str(round(totalChange / (monthCount - 1), 2)))
 	print('Greatest Increase in Profits:', greatestIncrease[0], '($' + str(greatestIncrease[1]) + ')')
 	print('Greatest Decrease in Profits:', greatestDecrease[0], '($' + str(greatestDecrease[1]) + ')')
-	
 
+output = "C:/python-challenge/bybank/analysis/output.txt"
+
+with open(output, 'w') as file:
+
+	
+	
+	file.write('Financial Analysis')
+	file.write('\n')
+	file.write('----------------------------')
+	file.write('\n')
+	file.write('Total Months: ' + str(monthCount))
+	file.write('\n')
+	file.write('Total: $' + str(total))
+	file.write('\n')
+	file.write('Average  Change: $' + str(round(totalChange / (monthCount - 1), 2)))
+	file.write('\n')
+	file.write('Greatest Increase in Profits:' + greatestIncrease[0] + '($' + str(greatestIncrease[1]) + ')')
+	file.write('\n')
+	file.write('Greatest Decrease in Profits:' + greatestDecrease[0] + '($' + str(greatestDecrease[1]) + ')')
+	
+  

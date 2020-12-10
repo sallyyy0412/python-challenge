@@ -4,7 +4,7 @@ csvpath = "C:/python-challenge/bypoll/resources/02-Homework_03-Python_Instructio
 
 with open(csvpath, newline='') as csvfile:
 	# 讀取 CSV 檔案內容
-	rows = list(csv.reader(csvfile))
+	rows = csv.reader(csvfile)
 	# 總投票數
 	totalVotes = 0
 	# 候選人清單
@@ -35,7 +35,9 @@ with open(csvpath, newline='') as csvfile:
 			candidates.append(candidateName)
 			# 計1票
 			numberOfVotes.append(1)
-	
+
+
+
 	# 結果輸出
 	print('Election Results')
 	print('-------------------------')
@@ -49,5 +51,35 @@ with open(csvpath, newline='') as csvfile:
 	maxVoteIndex = numberOfVotes.index(max(numberOfVotes))
 	print('Winner:', candidates[maxVoteIndex])
 	print('-------------------------')
-    
-    
+
+
+output = "C:/python-challenge/bypoll/analysis/output.txt"
+
+with open(output, 'w') as file:
+	file.write('Election Results')
+	file.write('\n')
+	file.write('----------------------------')
+	file.write('\n')
+	file.write('Total Votes:'+ str(totalVotes))
+	file.write('\n')
+	file.write('----------------------------')
+	file.write('\n')
+	
+	
+	
+	for i in range(0, len(candidates)):
+		file.write(candidates[i] + ":" + str('%.3f'%(numberOfVotes[i]/totalVotes * 100)) + '%' + '(' + str(numberOfVotes[i]) + ')')
+		file.write('\n')
+		maxVoteIndex = numberOfVotes.index(max(numberOfVotes))
+		file.write('\n')
+		
+	file.write('----------------------------')
+	file.write('\n')
+	file.write('Winner:' + candidates[maxVoteIndex])
+	file.write('\n')
+	file.write('----------------------------')
+            
+            
+            
+            
+            
