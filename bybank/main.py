@@ -18,16 +18,20 @@ with open(csvpath, newline='') as csvfile:
 	greatestIncrease = ['', 0]
 	# 虧損最多月份, 預設為無 
 	greatestDecrease = ['', 0]
+
+	next(csvfile)
+	#header = next(csvfile)
+
 	# 跳過標題row  
-	skipFirstRow = False
+	#skipFirstRow = False
 	
 	for row in rows:
 		# 還沒跳過標題row  
-		if not skipFirstRow:
-			# 那就跳過
-			skipFirstRow = True
-			# 下面一位~
-			continue
+		#if not skipFirstRow:
+		#	# 那就跳過
+		#	skipFirstRow = True
+		#	# 下面一位~
+		#	continue
 		
 		# 本月名稱 
 		currentMonth = row[0]
@@ -37,7 +41,7 @@ with open(csvpath, newline='') as csvfile:
 		total += currentAccount
 		
 		# 排除第一個月，每個月的增減之加總
-		if lastAccount == 0:
+		if lastAccount != 0:
 			# 月增減(與上月比較)
 			monthChange = (currentAccount - lastAccount)
 			# 總增減
